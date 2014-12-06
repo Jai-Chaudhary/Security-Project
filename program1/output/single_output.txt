@@ -1,0 +1,16 @@
+
+Evaluation on training data
+	Model trained on training example data OLS, RMSE and Correlation coefficient (391940778.99764687, 233.26711511479976, array([[ 1.        ,  0.83711098],
+       [ 0.83711098,  1.        ]])) Model [ 97.00480049] 292.836971305
+
+Evaluation on test data
+	Model trained on training example data OLS, RMSE and Correlation coefficient (139575197.32402709, 241.10601507559687, array([[ 1.        ,  0.83649035],
+       [ 0.83649035,  1.        ]])) Model [ 97.00480049] 292.836971305
+
+Evaluation on 14298265 trips from trip_data_1.csv
+	Model trained on training example data OLS, RMSE and Correlation coefficient (1640783071957.2173, 338.75359468519224, array([[ 1.        ,  0.77732153],[ 0.77732153,  1.        ]])) Model [ 97.00480049] 292.836971305
+	Model trained on 14298265 trips from trip_data_1.csv OLS, RMSE and Correlation coefficient (1368808694164.45, 309.40669482281004, array([[ 1.        ,  0.77732153],[ 0.77732153,  1.        ]])) Model [ 115.45121051] 364.905233273
+
+Evaluation on 13530537 trips from trip_data_2.csv
+	Model trained on training example data OLS, RMSE and Correlation coefficient (1701803695165.877, 354.64775462099288, array([[ 1.        ,  0.77702836],[ 0.77702836,  1.        ]])) Model [ 97.00480049] 292.836971305
+	Model trained on 14298265 trips from trip_data_1.csv OLS, RMSE and Correlation coefficient (1347335252043.0774, 315.5588174298307, array([[ 1.        ,  0.77702836],[ 0.77702836,  1.        ]])) Model [ 115.45121051] 364.905233273
