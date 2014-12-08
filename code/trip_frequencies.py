@@ -14,25 +14,16 @@ targets = [vodafone, verizon, omc, virgin, aa, silverlake, publis, TFS]
 names = ['vodafone', 'verizon', 'omc', 'virgin', 'aa', 'silverlake', 'publis', 'TFS']
 days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-def plot_freq(data, title, bank, month):
-	plt.clf()
-	ax = plt.subplot(111)
-	
+def plot_freq(data, bank):
 	for name, target in zip(names, data):
-		startday, endday = sum(days[:month]), sum(days[:month+1])
-		ys = target[startday:endday]
-		xs = range(len(ys))
-		ax.plot(xs, ys, label=name)
+		xs, ys = range(len(target)), target
+		plt.clf()
+		plt.plot(xs, ys)
+		plt.xlabel("Day")
+		plt.ylabel("Trips")
+		plt.title(bank + " " + name)
+		pylab.savefig("../figures/{}/{}.png".format(bank, name))
 
-	plt.xlabel("Day")
-	plt.ylabel("Trips")
-	plt.title(title)
-
-	box = ax.get_position()
-	ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
-	ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-
-	pylab.savefig("../figures/{}/{}.png".format(bank, title))
 
 def date_as_daynum(date):
 	month, day = int(date[5:7]), int(date[8:10])
@@ -70,8 +61,7 @@ def process_csv(csv_num):
 	banks = ["JPM", "BARC1", "BARC2", "CITI", "GS", "MS", "CS", "DB", 
              "UBS1", "UBS2", "BOA", "LAZ", "BNP", "SOCG", "WAC", "MAQ"]
 	bank = banks[csv_num-1]
-	for month in range(12):
-		plot_freq(bins, "FrequenciesFor{}_{}".format(bank, month+1), bank, month)
+	plot_freq(bins, bank)
 
 if __name__ == "__main__":
 	for csv_num in range(1, 17):
