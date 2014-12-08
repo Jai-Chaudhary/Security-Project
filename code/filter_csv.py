@@ -26,11 +26,11 @@ def in_range(lat, lon, banklat, banklon, delta):
 if __name__ == "__main__":
 # TODO - parse all taxi csv files (gonna take a shit-ton of time)
 	f = open("Add Path Here!")
-	c = open("filtered.csv", "wb")
-	wr = csv.writer(c)
+	cs = [open("filtered{}.csv".format(i+1), "wb") for i in range(len(banks))]
+	wrs = [csv.writer(c) for c in cs]
 	
 	delta = 0.001
-	slat, slon, elat, elon = 0.0, 0.0, 0.0, 0.0
+	slat, slon = 0.0, 0.0
 
 	line = f.readline()
 	while line:
@@ -38,15 +38,14 @@ if __name__ == "__main__":
 
 		try: 
 			slon, slat = map(float, vals[-4:-2])	# start lat / lon
-			elon, elat = map(float, vals[-2:])		# end lat / lon
 		except: line = f.readline()
 
-		for bank in banks:
-			if in_range(slat, slon, bank[0], bank[1], delta) or in_range(elat, elon, bank[0], bank[1], delta):
-				wr.writerow(vals)
+		for i, bank in enumerate(banks):
+			if in_range(slat, slon, bank[0], bank[1], delta):
+				wrs[i].writerow(vals)
 				break
 
 		line = f.readline()
 
-	c.close()
+	for c in cs: c.close()
 	f.close()
